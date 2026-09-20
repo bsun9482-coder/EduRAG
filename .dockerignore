@@ -1,0 +1,5 @@
+rag_qa/models/
+rag_qa/data/
+__pycache__/
+*.pyc
+logs/
