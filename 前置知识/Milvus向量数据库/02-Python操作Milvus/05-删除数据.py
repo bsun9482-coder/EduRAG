@@ -15,7 +15,7 @@ print(client.get_collection_stats(COLLECTION_NAME))
 
 # 单条删除 基于id
 client.delete(collection_name=COLLECTION_NAME,
-              filter="id == 466748619582908195")
+              filter="id == 469269879804198124")
 # 范围删除
 client.delete(collection_name=COLLECTION_NAME,
               filter="id in [2, 3, 4]")

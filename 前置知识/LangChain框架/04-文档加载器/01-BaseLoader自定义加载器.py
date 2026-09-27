@@ -42,7 +42,6 @@ class MyCustomLoader(BaseLoader):
         延迟加载：yield Document 对象，避免大文件内存溢出。
         实际项目中这里会调用 OCR 服务识别文档内容。
         """
-        # 模拟读取文件内容
         yield Document(
             page_content=f"这是从 {self.file_path} 加载的内容",
             metadata={"source": self.file_path}
@@ -52,7 +51,7 @@ class MyCustomLoader(BaseLoader):
         """
         一次性加载全部文档，内部调用 lazy_load。
         """
-        return list(self.lazy_load())
+        return list(self.lazy_load())  # 懒加载
 
 
 # 使用自定义加载器

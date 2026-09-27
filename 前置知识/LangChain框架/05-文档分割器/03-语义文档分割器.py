@@ -17,7 +17,7 @@ api_key = os.environ.get("AliApiKey")
 
 # 嵌入模型
 model = DashScopeEmbeddings(
-    model='text-embedding-v4',
+    model='qwen3.7-text-embedding',
     dashscope_api_key=api_key
 )
 
@@ -29,7 +29,7 @@ text_splitter = SemanticChunker(
     # 百分位数值：
     #   50  → 中等切割，切得较碎
     #   90~95 → 尽量不切，大块到底（中文文档推荐）
-    breakpoint_threshold_amount=50.0,
+    breakpoint_threshold_amount=95.0,
     # 句子拆分正则：同时识别中英文终结符
     sentence_split_regex=r'(?<=[。！？.!?])\s*',
     # 每个 chunk 至少的字符数

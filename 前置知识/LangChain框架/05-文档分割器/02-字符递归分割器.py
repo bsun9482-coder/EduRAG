@@ -36,7 +36,7 @@ splitter = RecursiveCharacterTextSplitter(
 # ==============================
 # 3. 分割文档
 # ==============================
-split_docs = splitter.split_documents(doc)
+split_docs = splitter.split_documents(doc) # doc ==> [Document]
 print(f"分割后文档数：{len(split_docs)}")
 print(f"类型：{type(split_docs)}")
 

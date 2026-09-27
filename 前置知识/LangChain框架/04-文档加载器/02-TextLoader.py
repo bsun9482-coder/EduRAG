@@ -20,6 +20,7 @@ print(f"文档类型：{type(docs)}")  # <class 'list'>
 print(f"第一个文档：{docs[0]}")
 print(f"\n文档内容（前200字）：")
 print(docs[0].page_content[:200])
+print(type(docs[0]))
 # 运行结果：
 # 加载了 1 个文档
 # 文档类型：<class 'list'>

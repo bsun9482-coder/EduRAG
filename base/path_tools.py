@@ -27,6 +27,7 @@ def get_abs_path(relative_path: str) -> str:
     return os.path.join(project_root, relative_path)
 
 if __name__ == '__main__':
+    print(__file__)
     print(get_abs_path(r'base/path_tools.py'))
     # todo python里写路径或正则就无脑用 r'xxxx'
     # r'xxxx' ==> raw string（原生字符串）

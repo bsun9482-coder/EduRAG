@@ -26,7 +26,7 @@ headers_to_split_on = [
 
 markdown_splitter = MarkdownHeaderTextSplitter(headers_to_split_on=headers_to_split_on)
 
-markdown_text = "# Header 1\nSome text\n## Header 2\nMore text\n### Header 3\nEven more text"
+markdown_text = "# Header 11\nSome text\n## Header 22\nMore text\n### Header 33\nEven more text\n#### Header 44\nSome more text"
 docs = markdown_splitter.split_text(markdown_text)
 
 print("【MarkdownHeaderTextSplitter】")

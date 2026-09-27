@@ -14,9 +14,9 @@ dbnames_list = client.list_databases()
 if "edurag" not in dbnames_list: # 判断数据库是否存在
     # 创建数据库 最多能建64个，Milvus Lite不支持
     client.create_database('edurag')
-else:
-    # 使用数据库
-    client.use_database('edurag')
+
+# 使用数据库
+client.use_database('edurag')
 print(client.list_databases())
 
 # 删除数据库（演示，实际使用时注释掉）

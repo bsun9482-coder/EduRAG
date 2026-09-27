@@ -121,7 +121,7 @@ def cmd_run():
     print('➡️ Edu RAG 命令行模式：')
 
     # todo 1. 自定义 程序介绍 和 额外说明
-    description = """EduRAG v7.9 启动说明：
+    description = """EduRAG v8 启动说明：
     1. 默认进入RAG问答模式：
         python ./main.py
     2. 查看命令菜单
@@ -132,7 +132,7 @@ def cmd_run():
     4. 进入RAG数据处理模式，对指定目录中的数据文件进行处理 
         python ./main.py --data --dir 数据文件的相对或绝对路径
     """
-    epilog = f'感谢使用 EduRAG v7.9！如有问题请联系管理员: {Config.CUSTOMER_SERVICE_PHONE}'
+    epilog = f'感谢使用 EduRAG v8！如有问题请联系管理员: {Config.CUSTOMER_SERVICE_PHONE}'
 
     # todo 2. 创建参数解析器，实例化ArgumentParser对象，设置"描述信息"
     parser = argparse.ArgumentParser(
@@ -157,7 +157,9 @@ def cmd_run():
     parser.add_argument(
         '--dir',
         type=lambda p: os.path.abspath(os.path.expanduser(p)),
-        default=Config.DATA_DIR, # 默认数据目录的绝对路径
+        # python main.py --data 此时不写 --dir时， default才生效！
+        default=Config.DATA_DIR, # 默认数据目录的绝对路径，只有单独使用 --data形参 时才生效
+                                 # --data --dir <必须指定目录路径>
         help='在--data模式下 输入数据目录的路径 进行数据处理'
     )
     '''保障相对路径和绝对路径都支持（默认仅支持绝对路径）

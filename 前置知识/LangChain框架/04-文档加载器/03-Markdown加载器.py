@@ -25,7 +25,7 @@ from langchain_community.document_loaders import UnstructuredMarkdownLoader
 # 默认 single 模式：所有内容合并为一个 Document
 file_path = "../data/haha.md"
 loader = UnstructuredMarkdownLoader(file_path)
-docs = loader.load()
+docs = loader.load() # [Document]
 print(f"【UnstructuredMarkdownLoader】加载了 {len(docs)} 个文档")
 print(docs[0].page_content[:200])
 # 运行结果：

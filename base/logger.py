@@ -94,5 +94,6 @@ if __name__ == '__main__':
     # 受到 .ini配置文件配置的日志级别限制！
     logger.debug('调试')
     logger.info('测试')
-    logger.error('错误')
     logger.warning('警告')
+    logger.error('错误')
+    logger.critical('严重错误！')

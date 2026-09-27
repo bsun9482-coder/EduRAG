@@ -119,7 +119,8 @@ for hits in search_res:
         print(f"电影名称：{hit['entity']['title']}")
         print(f"电影分类：{hit['entity']['genre']}")
         print(f"剧情简介：{hit['entity']['plot']}\n")
-        
+
+input('sssss')
 print(f'即将删除分区 {NEW_PARTITION_NAME}！分区中数据将全部删除！')
 # 此时可以先去Attu页面查看分区情况
 

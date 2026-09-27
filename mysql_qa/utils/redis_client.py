@@ -38,7 +38,7 @@ class RedisClient:
         """
         try:
             self.client.set(
-                name=key,
+                name=key, # f'edu_rag:name2:{key}'
                 value=json.dumps(value, ensure_ascii=False),
                 ex=Config.REDIS_TTL # 缓存过期时间
             )
@@ -64,7 +64,7 @@ class RedisClient:
         """存储一个问题的答案到redis"""
         try: # f'edu_rag:answer:{query}' 完整key名
             self.client.set(
-                name=f'edu_rag:answer:{query}',
+                name=f'edu_rag:answer:{query}', # key
                 value=answer,
                 ex=Config.REDIS_TTL # 缓存过期时间
             )
@@ -98,3 +98,4 @@ class RedisClient:
 if __name__ == '__main__':
     # 测试
     RedisClient().clear_all_data()
+    RedisClient().client.ping()

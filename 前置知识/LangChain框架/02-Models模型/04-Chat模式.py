@@ -18,7 +18,7 @@ from langchain_core.messages import HumanMessage, SystemMessage, AIMessage
 api_key = os.environ.get("AliApiKey")
 
 model = init_chat_model(
-    "openai:qwen3.7-flash-2026-07-15",
+    "openai:qwen3.7-flash",
     base_url="https://dashscope.aliyuncs.com/compatible-mode/v1",
     api_key=api_key,
     temperature=0,

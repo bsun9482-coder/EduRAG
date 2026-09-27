@@ -57,7 +57,7 @@ class VectorStore:
         )
 
         # 获取bge-m3的维度是1024（稠密向量维度）
-        self.dense_dim =  self.embedding_function.dim['dense']
+        self.dense_dim = self.embedding_function.dim['dense']
 
         # 创建、加载向量库集合
         self._create_or_load_collection()
@@ -79,10 +79,10 @@ class VectorStore:
         embeddings = self.embedding_function(texts)
         # print('-' * 20, '输出的向量的细节➡️ ：')
         print('1. embeddings.kesy:', embeddings.keys())
-        # print('2. 稠密向量数量:', len(embeddings['dense']))
+        print('2. 稠密向量数量:', len(embeddings['dense']))
         print('3. 一个稠密向量:', embeddings['dense'][0])
-        # print('4. 稀疏向量矩阵:', embeddings['sparse'])
-        # print('5. 第一个稀疏向量的COO格式:', embeddings['sparse'][0])
+        print('4. 稀疏向量矩阵:', embeddings['sparse'])
+        print('5. 第一个稀疏向量的COO格式:', embeddings['sparse'][0])
         print('6. 第一个稀疏向量的CSR格式:', embeddings['sparse'][0].tocsr())
         # print('6. 第一个稀疏向量的CSR格式:', embeddings['sparse'][[0]])
         # print('7. 第1个稀疏向量的列号列表:', embeddings["sparse"][[0]].indices)
@@ -502,23 +502,24 @@ if __name__ == '__main__':
 
     # vector_store = VectorStore()
     # vector_store._test_INIT()
-
+    #
     # vector_store = VectorStore()
     # vector_store._test_BGE_M3()
-
+    #
     # vector_store = VectorStore()
     # vector_store._test_BGE_RERANKER_LARGE()
-
+    #
     # vector_store = VectorStore()
     # vector_store._test_CREATE_OR_LOAD_COLLECTION()
 
-    vector_store = VectorStore()
+    # vector_store = VectorStore()
     # vector_store._test_ADD_DOCUMENTS()
 
     print('测试 ➡️ 混合检索')
+    vector_store = VectorStore()
     # vector_store._test_HYBRID_SEARCH_WITH_RERANK('大模型课程介绍')
     # vector_store._test_HYBRID_SEARCH_WITH_RERANK('语言模型评估指标')
     # vector_store._test_HYBRID_SEARCH_WITH_RERANK('AI学科的课程内容是什么？')
-    vector_store._test_HYBRID_SEARCH_WITH_RERANK('黑马AI课程大纲有哪些主要内容?')
-
+    # vector_store._test_HYBRID_SEARCH_WITH_RERANK('黑马AI课程大纲有哪些主要内容?')
+    vector_store._test_HYBRID_SEARCH_WITH_RERANK('蔡徐坤练习时长两年半，王者归来！大家别感冒！')
 

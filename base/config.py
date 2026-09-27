@@ -100,8 +100,12 @@ class Config:
         # 设备配置
         self.DEVICE = self.config.get('device', 'device', fallback='cpu')
 
-
+# 进程内 全局单例
+# 别的文件引用的时候：
+# from base.config import Config
+# Config不管是谁引用都是同一个对象！
 Config = Config()
+
 
 if __name__ == '__main__':
     # 测试 配置文件 读取 日志文件目录

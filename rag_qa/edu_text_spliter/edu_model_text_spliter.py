@@ -45,9 +45,11 @@ class AliTextSplitter(CharacterTextSplitter):
             if sentence.strip():
                 sentences.append(sentence.strip())
 
+        #  ['你好。', '世界！', '哈哈？', '拜拜']
+
         # 处理没有标点的情况
         if not sentences and text.strip():
-            sentences = [text.strip()]
+            sentences = [text.strip()] # [你好世界哈哈拜拜,]
 
         return sentences
 
@@ -163,6 +165,7 @@ class SimpleAliTextSplitter:
     def split_text(self, text: str) -> List[str]:
         """简化的接口，直接调用分割器"""
         return self.splitter.split_text(text)
+
 
 
 if __name__ == '__main__':

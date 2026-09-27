@@ -96,7 +96,7 @@ class MysqlClient:
             # 正确写法：表名拼接，WHERE 字段用 %s 占位
             sql = f"SELECT answer FROM `{Config.MYSQL_TABLE}` WHERE question = %s"
             self.cur.execute(sql, (question,))
-            result = self.cur.fetchone()  # 获取查询结果
+            result = self.cur.fetchone()  # 获取查询结果 （答案,）
             self.logger.info(f"问题：{question}，查询结果数量：{len(result)}")
             # 查询结果可能为 None
             return result[0] if result else None

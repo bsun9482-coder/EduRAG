@@ -59,3 +59,18 @@ print(result.content)
 # 【ChatOllama 结果】
 # 为什么数学老师离婚了？
 # 因为发现另一半是负数！
+
+
+from langchain.chat_models import init_chat_model
+
+model = init_chat_model(
+    "openai:qwen3:4b",
+    base_url="http://localhost:11434/v1",
+    api_key="ollama",  # Ollama 本地服务不需要真实 API Key，填任意字符串即可
+    temperature=0,
+    max_tokens=1000,
+)
+
+result = model.invoke("请给我讲个笑话吧")
+print("\n【本地ollama init_chat_model 结果】")
+print(result.content)

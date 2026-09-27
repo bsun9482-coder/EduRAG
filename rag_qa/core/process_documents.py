@@ -48,6 +48,9 @@ def load_documents_from_directory(directory_path):
             file_path = os.path.join(root, file)
             # 获取文件扩展名并转换为小写
             file_extension = os.path.splitext(file_path)[1].lower()
+            print(file_extension)
+            print(os.path.splitext(file_path))
+            # ..../1.py   [..../1, .py]
             # 检查文件类型是否在支持的扩展名列表中
             if file_extension in supported_extensions:
                 # 使用 try-except 捕获加载过程中的异常
@@ -60,7 +63,7 @@ def load_documents_from_directory(directory_path):
                     else:
                         loader = loader_class(file_path)
                     # 调用加载器加载文档内容，返回文档列表
-                    loaded_docs = loader.load()
+                    loaded_docs = loader.load() # [Document]
                     # 遍历加载的每个文档
                     for doc in loaded_docs:
                         # 为文档添加学科类别元数据
@@ -92,11 +95,11 @@ def process_documents(
         chunk_overlap=Config.CHUNK_OVERLAP # 块重叠
     ) -> [Document]:
     # 从指定目录加载所有文档
-    documents = load_documents_from_directory(directory_path)
+    documents = load_documents_from_directory(directory_path) # [Document]
     # 记录加载的文档总数日志
     logger.info(f"加载的文档数量: {len(documents)}")
 
-    # 初始化父块和子块分词器（通用）
+    # 初始化父块和子块分割器（通用）
     parent_splitter = ChineseRecursiveTextSplitter(
         chunk_size=parent_chunk_size,
         chunk_overlap=chunk_overlap
@@ -106,7 +109,7 @@ def process_documents(
         chunk_overlap=chunk_overlap
     )
 
-    # 初始化父块和子块分词器（Markdown 专用）
+    # 初始化父块和子块分割器（Markdown 专用）
     markdown_parent_splitter = MarkdownTextSplitter(
         chunk_size=parent_chunk_size,
         chunk_overlap=chunk_overlap
@@ -137,7 +140,7 @@ def process_documents(
 
         logger.info(f"处理文档: {doc.metadata['file_path']}, 使用切分器: {'Markdown' if is_markdown else 'ChineseRecursive'}")
 
-        # 使用父块分词器将文档切分为父块
+        # 使用父块分词器将文档切分为父块  [Document]  其中每个Document都是1200字以下的文档对象（父块）
         parent_docs = parent_splitter_to_use.split_documents([doc])
         # 遍历每个父块，带上索引 j
         for j, parent_doc in enumerate(parent_docs):
@@ -149,6 +152,7 @@ def process_documents(
             parent_doc.metadata["parent_content"] = parent_doc.page_content
 
             # 使用子块分词器将父块切分为子块
+            # [Document]  其中每个Document都是300字以下的文档对象（子块）
             sub_chunks = child_splitter_to_use.split_documents([parent_doc])
             # 遍历每个子块，带上索引 k
             for k, sub_chunk in enumerate(sub_chunks):

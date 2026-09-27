@@ -1,3 +1,8 @@
+import os, sys
+# 把项目根目录加入模块搜索路径，保证能 import base（本文件在 mysql_qa/utils 下，向上两层即根目录）
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+print(sys.path)
+
 from mysql_qa.core_search import Bm25SoftmaxSearch
 from mysql_qa.utils.mysql_client import database_init
 from base import logger
@@ -44,9 +49,12 @@ class MySQLQaSystem:
             # 关闭数据库连接
             self.core_search.mysql_client.close()
 
+
 if __name__ == '__main__':
 
-    database_init() # 初始化数据库
+
+
+    # database_init() # 初始化数据库 TODO
 
     q_list = [
         '关联子查询的执行顺序是什么', '归一化算法问题',

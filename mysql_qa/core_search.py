@@ -233,19 +233,21 @@ class Bm25SoftmaxSearch:
 if __name__ == '__main__':
     import random
 
-    print('测试➡️ _load_data 加载数据')
-    q_list = [
-        '关联子查询的执行顺序是什么', '归一化算法问题',
-        'os.path.dirname() 方法有什么作用？',
-        '函数和类区别', '什么是张量'
-    ]
-    q = random.choice(q_list)
-    Bm25SoftmaxSearch._test_LOAD_DATA(q)
+    # print('测试➡️ _load_data 加载数据')
+    # q_list = [
+    #     '关联子查询的执行顺序是什么',
+    #     '归一化算法问题',
+    #     'os.path.dirname() 方法有什么作用？',
+    #     '函数和类区别',
+    #     '什么是张量'
+    # ]
+    # q = random.choice(q_list)
+    # Bm25SoftmaxSearch._test_LOAD_DATA(q)
 
-    print('演示➡️ softmax的过程')
-    Bm25SoftmaxSearch._test_SOFTMAX([2,4,6])
-    print('演示➡️ 计算爆炸的结果')
-    Bm25SoftmaxSearch._test_SCORES_MAX([1000, 1001, 1002])
+    # print('演示➡️ softmax的过程')
+    # Bm25SoftmaxSearch._test_SOFTMAX([2,4,6])
+    # print('演示➡️ 计算爆炸的结果')
+    # Bm25SoftmaxSearch._test_SCORES_MAX([1000, 1001, 1002])
 
     print('测试➡️ search核心逻辑')
     q_list = [

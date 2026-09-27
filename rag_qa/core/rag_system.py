@@ -43,7 +43,7 @@ class RAGSystem:
                 source_filter=source_filter
             )
             logger.info(f"直接检索策略检索结果: {len(docs)} 个文档")
-            return docs
+            return docs # [Document]
         except Exception as e:
             # 若检索失败, 记录日志, 并返回空列表.
             logger.error(f"直接检索策略执行失败: {e}")
@@ -311,6 +311,7 @@ class RAGSystem:
 
 
     # TODO 增加：💡【RAG核心流程（带历史会话）】对外接口
+    # 提示词 新函数要覆盖旧函数的功能，且不影响旧函数的调用，新函数完全能够替换旧函数，不影响调用逻辑（旧调用的参数、返回值不受影响）
     def generate_answer_withhistory(self,
                                      query,
                                      source_filter=None,
@@ -456,7 +457,6 @@ class RAGSystem:
         print(f'history: {history}')
 
 
-
 if __name__ == '__main__':
     rag_system = RAGSystem()
 
@@ -469,12 +469,12 @@ if __name__ == '__main__':
     # rag_system._test_GENERATE_ANSWER()  # 测试RAG主逻辑
 
     # 调用示例
-    # answer = rag_system.generate_answer(query="地球为什么是圆的?", source_filter='ai')
-    # print(answer) # 通用知识
-    # answer = rag_system.generate_answer(query="黑马AI课程大纲有哪些内容?", source_filter='ai')
-    # print(answer) # 专业咨询
-    # answer = rag_system.generate_answer(query="人工智能就业课的涉及需求是什么?", source_filter='ai')
-    # print(answer) # 专业咨询
+    answer = rag_system.generate_answer(query="地球为什么是圆的?", source_filter='ai')
+    print(answer) # 通用知识
+    answer = rag_system.generate_answer(query="黑马AI课程大纲有哪些内容?", source_filter='ai')
+    print(answer) # 专业咨询
+    answer = rag_system.generate_answer(query="人工智能就业课的涉及需求是什么?", source_filter='ai')
+    print(answer) # 专业咨询
 
     # 测试带历史会话的RAG主逻辑
     rag_system._test_GENERATE_ANSWER_WITHHISTORY()

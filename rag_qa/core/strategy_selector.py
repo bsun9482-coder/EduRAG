@@ -163,7 +163,7 @@ Query: {query}
 if __name__ == '__main__':
 
     ss = StrategySelector()
-    ss._test_SELECT_STRATEGY()
+    # ss._test_SELECT_STRATEGY()
 
-    # ss.select_strategy(query="人工智能专业毕业生的竞争力如何?")
+    ss.select_strategy(query="人工智能专业毕业生的竞争力如何?")
     ss.select_strategy(query='Python中的列表和元组有什么不同？')
