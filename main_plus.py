@@ -91,6 +91,7 @@ class IntegratedQASystem:
                 for row in self.mysql_client.cur.fetchall()
             ] # → [Q5, Q4, Q3, Q2, Q1]
             return history[::-1] # → [Q1, Q2, Q3, Q4, Q5]
+        #  [起始位置:结束位置（不要）:方向符号、步长]
 
         except Exception:
             # 记录查询失败的错误日志
@@ -279,7 +280,7 @@ if __name__ == "__main__":
 
     '''清除历史会话'''
     # qa_system = IntegratedQASystem()
-    # session_id = '35c7c584-1da5-4143-a8bd-df6a6f35035e'
+    # session_id = '49466345-1e2a-4a6c-8641-72ed9aef3369'
     # ret = qa_system._clear_session_history(session_id)
     # print(ret)
 

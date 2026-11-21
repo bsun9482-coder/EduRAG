@@ -1,0 +1,58 @@
+[project]
+name = "02-edurag"
+version = "0.1.0"
+# 与生产镜像对齐：Dockerfile.dev / Dockerfile.prod 均为 python:3.10-slim。
+# 上限卡死 3.11 是为了让 uv 不会挑到本机的 3.12/3.14，否则本地与容器版本长期分叉。
+requires-python = ">=3.10,<3.11"
+# 版本号沿用 requirements.txt 中已验证过的钉版，不做放宽，保证与现有可用环境一致。
+dependencies = [
+    "chromadb==1.5.9",
+    "dashscope==1.25.19",
+    "faiss-cpu==1.14.3",
+    "fastapi==0.136.3",
+    "flagembedding==1.4.0",
+    "jieba==0.42.1",
+    "jq==1.12.0",
+    # 裸 langchain 由 langchain-community 等传递引入，但 rag_qa/core/llm_provider.py:1
+    # 直接 from langchain.chat_models import init_chat_model，故显式声明，避免上游改动后消失。
+    "langchain==1.4.9",
+    "langchain-chroma==1.1.0",
+    "langchain-community==0.3.31",
+    "langchain-huggingface==1.2.2",
+    "langchain-ollama==1.1.0",
+    "langchain-openai==1.6.0",
+    "langchain-text-splitters==1.1.2",
+    "langchain-unstructured==1.0.1",
+    "markdown==3.10.2",
+    "milvus-model==0.2.12",
+    "opencv-python==4.13.0.92",
+    "openai==2.45.0",
+    "peft==0.19.1",
+    "pymilvus==2.6.15",
+    "pymysql==1.2.0",
+    "pymupdf==1.24.11",
+    "python-docx==1.2.0",
+    "python-pptx==1.0.2",
+    "ragas==0.4.0",
+    "rank-bm25==0.2.2",
+    "rapidocr-onnxruntime==1.4.4",
+    "redis==8.0.0",
+    "sentence-transformers==5.5.1",
+    "starlette==1.2.1",
+    "torch==2.12.1",
+    "unstructured==0.18.32",
+    "uvicorn==0.49.0",
+]
+
+[tool.uv]
+# torch 走 PyTorch 官方 CPU 源，与 Dockerfile.dev:31-33 的安装方式保持一致。
+# explicit = true 表示此源只服务于下面显式指定它的包，不会参与其他包的解析，
+# 避免整个依赖树被这个源拖慢或解析到非预期版本。
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true
+
+[tool.uv.sources]
+# 不加这段的话，torch 会从 PyPI 镜像拉到 CUDA 版（体积大 2GB+ 且本机无 N 卡用不上）。
+torch = { index = "pytorch-cpu" }

@@ -85,6 +85,13 @@ async def read_root():
 # 创建新会话
 @app.post("/api/create_session")
 async def create_session():
+    """
+    POST /api/create_session 创建一个新的会话，并返回会话ID。
+        Request: None
+        Response: json
+            {"session_id": session_id}
+                session_id: str 会话ID，用于后续查询和清除历史记录。
+    """
     session_id = str(uuid.uuid4())
     return {"session_id": session_id}
 

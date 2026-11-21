@@ -129,7 +129,7 @@ async def query(request: QueryRequest):
         # 需要 RAG，提示使用 WebSocket
         return {
             "answer": "请使用WebSocket接口获取流式响应",
-            "is_streaming": True,
+            "is_streaming": False,
             "session_id": session_id,
             "processing_time": time.time() - start_time
         }
@@ -243,6 +243,9 @@ async def health_check():
 async def get_sources():
     return {"sources": Config.VALID_SOURCES}
 
-if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run("rag_api:app", host="0.0.0.0", port=8000, reload=False)
+# if __name__ == "__main__":
+#     import uvicorn
+#     uvicorn.run("rag_api:app", host="0.0.0.0", port=8000, reload=False)
+
+# cd到项目目录下（rag_api.py 所在目录）
+# C:\Users\姚相宇\Desktop\Stady\python_venv\venv_rag\Scripts\python.exe -m uvicorn rag_api:app --host 0.0.0.0 --port 8000 --workers 2 > output 2>&1

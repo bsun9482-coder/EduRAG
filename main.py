@@ -7,8 +7,7 @@ import os, traceback
 # '''
 # import sys
 # current_file = os.path.abspath(__file__) # 当前文件的绝对路径
-# current_dir = os.path.dirname(current_file) # 当前文件所在目录
-# project_root = os.path.dirname(current_dir) # 工程根目录
+# project_root = os.path.dirname(current_file) # 工程根目录
 # sys.path.append(project_root)
 
 from rag_qa.core.process_documents import process_documents # 文档加载分割
@@ -216,9 +215,9 @@ if __name__ == "__main__":
 
     '''运行查询模式'''
     # print('➡️ Edu RAG QA查询模式：')
-    # main(query_mode=True)
+    main(query_mode=True)
 
     '''命令行模式'''
-    cmd_run()
+    # cmd_run()
 
 
